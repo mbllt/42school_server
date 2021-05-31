@@ -1,0 +1,3 @@
+FROM debian:10
+
+ENV PORT 80
