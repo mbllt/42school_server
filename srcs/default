@@ -18,10 +18,15 @@
 
 # Default server configuration
 #
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
 server {
         listen 80;
         listen [::]:80;
+		return 301 https://$host$request_uri;
+		}
 
+server {
         # SSL configuration
         #
         listen 443 ssl;
@@ -51,7 +56,7 @@ server {
                 # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
                 try_files $uri $uri/ =404;
-				autoindex on;
+				#autoindex on;
         }
 
         # pass PHP scripts to FastCGI server
@@ -68,6 +73,7 @@ server {
         # deny access to .htaccess files, if Apache's document root
         # concurs with nginx's one
         #
+
         location ~ /\.ht {
                deny all;
         }
