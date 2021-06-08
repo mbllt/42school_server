@@ -10,10 +10,9 @@ RUN apt-get update -y && apt-get install -y \
 	mariadb-server mariadb-client
 
 COPY srcs/default /etc/nginx/sites-available/
-
+COPY srcs/config.inc.php /usr/share/phpmyadmin
 COPY srcs/init.sh ./
 RUN bash init.sh
-
 
 EXPOSE 80
 EXPOSE 443
