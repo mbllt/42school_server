@@ -26,8 +26,6 @@ mv ./config.inc.php /var/www/html/phpmyadmin/
 chmod 660 /var/www/html/phpmyadmin/config.inc.php
 chown -R www-data:www-data /var/www/html/phpmyadmin/
 ln -s /var/www/html/phpmyadmin /usr/share/phpmyadmin
-#service php7.3-fpm start
-#mysql -u root < /var/www/html/phpmyadmin/sql/create_tables.sql
 mysql -u root -e "CREATE USER 'mia'@'localhost' IDENTIFIED BY '123';"
 mysql -u root -e "GRANT ALL ON phpmyadmin.* TO 'mia'@'localhost';"
 mysql -u root -e "FLUSH PRIVILEGES;"
