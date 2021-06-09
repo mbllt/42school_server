@@ -1,5 +1,7 @@
+#!/bin/bash
+
 #NGINX
-mv ./default /etc/nginx/sites-available/
+mv default /etc/nginx/sites-available/
 rm /etc/nginx/sites-enabled/default
 ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled
 

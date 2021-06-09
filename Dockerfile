@@ -1,7 +1,5 @@
 FROM debian:buster
 
-#ENV AUTOINDEX 'on'
-
 RUN apt-get update -y && apt-get install -y \
 	nginx \
 	wget \
@@ -10,16 +8,15 @@ RUN apt-get update -y && apt-get install -y \
 	php7.3-common php7.3-json php7.3-opcache php7.3-readline \
 	php-json php-mbstring \
 	mariadb-server mariadb-client \
-	php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip \
-	vim
+	php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip
 
+COPY srcs/wp-config.php ./
 COPY srcs/config.inc.php ./
 COPY srcs/default ./
-COPY srcs/wp-config.php ./
 COPY srcs/launch.sh ./
 COPY srcs/init.sh ./
 RUN bash init.sh
 
-EXPOSE 80 443
-
 CMD bash launch.sh
+EXPOSE 80 443
+#CMD ["nginx", "-g", "daemon off;"]
