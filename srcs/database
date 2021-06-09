@@ -1,0 +1,12 @@
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+CREATE DATABASE motpresse;
+CREATE DATABASE phpmyadmin;
+FLUSH PRIVILEGES;
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL ON motpresse.* TO 'user'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+GRANT SELECT ON phpmyadmin.* TO 'user'@'localhost' IDENTIFIED BY 'password'; 
+GRANT USAGE ON phpmyadmin.* TO 'user'@'localhost' IDENTIFIED BY 'password';
+FLUSH PRIVILEGES;
