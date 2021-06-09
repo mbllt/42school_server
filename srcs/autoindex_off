@@ -5,6 +5,7 @@ server {
 		}
 
 server {
+
         listen 443 ssl;
         listen [::]:443 ssl;
 
@@ -14,6 +15,7 @@ server {
         index index.html index.htm index.nginx-debian.html index.php;
 
         location /var/www/html/ {
+
                 try_files $uri $uri/ =404;
         }
 

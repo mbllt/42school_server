@@ -13,10 +13,13 @@ RUN apt-get update -y && apt-get install -y \
 COPY srcs/wp-config.php ./
 COPY srcs/config.inc.php ./
 COPY srcs/default ./
+COPY srcs/autoindex_on ./
+COPY srcs/autoindex_off ./
+COPY srcs/change_autoindex.sh ./
 COPY srcs/launch.sh ./
 COPY srcs/init.sh ./
 RUN bash init.sh
 
-CMD bash launch.sh
+CMD bash change_autoindex.sh && bash launch.sh
 EXPOSE 80 443
 #CMD ["nginx", "-g", "daemon off;"]
