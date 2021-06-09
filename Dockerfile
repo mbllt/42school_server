@@ -1,5 +1,7 @@
 FROM debian:buster
 
+#ENV AUTOINDEX 'on'
+
 RUN apt-get update -y && apt-get install -y \
 	nginx \
 	wget \
@@ -8,7 +10,8 @@ RUN apt-get update -y && apt-get install -y \
 	php7.3-common php7.3-json php7.3-opcache php7.3-readline \
 	php-json php-mbstring \
 	mariadb-server mariadb-client \
-	php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip
+	php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip \
+	vim
 
 COPY srcs/config.inc.php ./
 COPY srcs/default ./
