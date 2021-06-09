@@ -5,9 +5,9 @@ ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled
 
 #My SQL
 service mysql start
-echo "CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;" | mysql -u root
-echo "GRANT ALL ON wordpress.* TO 'wordpress_user'@'localhost' IDENTIFIED BY 'password';" | mysql -u root
-echo "FLUSH PRIVILEGES;" | mysql -u root
+mysql -u root -e "CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;"
+mysql -u root -e "GRANT ALL ON wordpress.* TO 'wordpress_user'@'localhost' IDENTIFIED BY 'password';"
+mysql -u root -e "FLUSH PRIVILEGES;"
 
 #CERTIFICAT SSL
 mkdir -p /etc/nginx/ssl && chown -R $USER:$USER /etc/nginx/ssl && chmod -R 755 /etc/nginx/ssl
@@ -26,18 +26,12 @@ chown -R www-data:www-data /var/www/html/phpmyadmin/
 ln -s /var/www/html/phpmyadmin /usr/share/phpmyadmin
 #service php7.3-fpm start
 #mysql -u root < /var/www/html/phpmyadmin/sql/create_tables.sql
-#mysql -u root < ./database
-msql -u root -e "GRANT ALL ON phpmyadmin.* TO 'mia'@'localhost' IDENTIFIED BY '123';"
-msql -u root -e "FLUSH PRIVILEGES;"
-
-#echo "GRANT ALL ON phpmyadmin.* TO 'mia'@'localhost' IDENTIFIED BY '123';" | mysql -u root
-#echo "FLUSH PRIVILEGES;" | mysql -u root
+mysql -u root -e "CREATE USER 'mia'@'localhost' IDENTIFIED BY '123';"
+mysql -u root -e "GRANT ALL ON phpmyadmin.* TO 'mia'@'localhost';"
+mysql -u root -e "FLUSH PRIVILEGES;"
 
 #WORDPRESS
 wget https://wordpress.org/latest.tar.gz
 tar -zxvf latest.tar.gz
-
-#LAUNCH
-#service nginx start
-#service mysql restart
-#service php7.3-fpm restart
+mv ./wp-config.php /wordpress
+mv /wordpress /var/www/html

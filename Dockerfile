@@ -10,9 +10,9 @@ RUN apt-get update -y && apt-get install -y \
 	mariadb-server mariadb-client \
 	php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip
 
-#COPY srcs/database ./
 COPY srcs/config.inc.php ./
 COPY srcs/default ./
+COPY srcs/wp-config.php ./
 COPY srcs/launch.sh ./
 COPY srcs/init.sh ./
 RUN bash init.sh
