@@ -12,6 +12,7 @@ RUN apt-get update -y && apt-get install -y \
 
 COPY srcs/wp-config.php ./ \
 		srcs/config.inc.php ./ \
+		srcs/index.nginx-debian.html ./ \
 		srcs/default ./ \
 		srcs/autoindex_on ./ \
 		srcs/autoindex_off ./ \
